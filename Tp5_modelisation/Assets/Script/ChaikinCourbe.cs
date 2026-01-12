@@ -55,7 +55,18 @@ public class ChaikinCourbe : MonoBehaviour
             var next = new List<Vector3>();
 
             int n = current.Count;
-            int last = closed ? n : n - 1;
+
+            int last;
+
+            if (closed)
+            {
+                last = n;
+            }
+            else
+            {
+                last = n - 1;
+            }
+
 
             if (!closed)
                 next.Add(current[0]); 
