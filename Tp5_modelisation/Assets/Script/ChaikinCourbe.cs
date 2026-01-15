@@ -13,6 +13,7 @@ public class ChaikinCourbe : MonoBehaviour
     public bool drawControlPolygon = true;
     public bool drawSubdividedCurve = true;
 
+    // Ici, on recupere les points de controle et  on dessine  le polygone de controle en jaune, puis en cyan on dessine la courbe de Chaikin
     private void OnDrawGizmos()
     {
         if (controlPoints == null || controlPoints.Count < 2) return;
@@ -37,6 +38,7 @@ public class ChaikinCourbe : MonoBehaviour
         DrawPolyline(refined, closed);
     }
 
+    // Ici on relie les points entre eux et si l'option closed est true, alors ça ferme le polygone de controle et la courbe
     static void DrawPolyline(List<Vector3> pts, bool closed)
     {
         for (int i = 0; i < pts.Count - 1; i++)
@@ -46,6 +48,8 @@ public class ChaikinCourbe : MonoBehaviour
             Gizmos.DrawLine(pts[^1], pts[0]);
     }
 
+
+    // Applique l'algo de chaikin
     static List<Vector3> Chaikin(List<Vector3> input, int iters, bool closed)
     {
         var current = new List<Vector3>(input);
